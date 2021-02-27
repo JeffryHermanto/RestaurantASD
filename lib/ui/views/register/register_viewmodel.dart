@@ -2,11 +2,14 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../../app/app.locator.dart';
+import '../../../datamodels/user.dart';
 import '../../../enums/dialog_type.dart';
+import '../../../services/database_service.dart';
 
 class RegisterViewModel extends BaseViewModel {
   final NavigationService _navigationService = locator<NavigationService>();
   final DialogService _dialogService = locator<DialogService>();
+  final DatabaseService _databaseService = locator<DatabaseService>();
 
   String _email;
   String _password;
@@ -60,7 +63,18 @@ class RegisterViewModel extends BaseViewModel {
   }
 
   Future register() async {
-    if (_isAllParamsNotNullAndNotEmpty()) {}
+    if (_isAllParamsNotNullAndNotEmpty()) {
+      await _databaseService.addUser(User(
+        id: 0,
+        email: _email,
+        password: _password,
+        nickname: _nickname,
+        dateOfBirth: _dateOfBirth,
+        gender: _gender,
+        address: _address,
+        nationality: _nationality,
+      ));
+    }
   }
 
   bool _isAllParamsNotNullAndNotEmpty() {
