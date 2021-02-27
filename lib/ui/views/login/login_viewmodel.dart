@@ -50,7 +50,7 @@ class LoginViewModel extends BaseViewModel {
           _showLoginErrorDialog('User not found.');
         }
       } catch (e) {
-        _showLoginErrorDialog(e.toString());
+        _showLoginErrorDialog('User not found.');
       }
     }
   }
