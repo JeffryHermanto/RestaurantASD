@@ -25,7 +25,7 @@ class RegisterView extends ViewModelBuilderWidget<RegisterViewModel> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                _buildHeader(),
+                _buildHeaderAndClearButton(model),
                 _buildRegisterForm(model),
                 _buildFooterAndRegisterButton(model),
               ],
@@ -36,14 +36,30 @@ class RegisterView extends ViewModelBuilderWidget<RegisterViewModel> {
     );
   }
 
-  Widget _buildHeader() {
-    return const Text(
-      'Register',
-      style: TextStyle(
-        color: kSecondaryBlack,
-        fontWeight: FontWeight.bold,
-        fontSize: 24.0,
-      ),
+  Widget _buildHeaderAndClearButton(RegisterViewModel model) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.baseline,
+      children: [
+        const Text(
+          'Register',
+          style: TextStyle(
+            color: kSecondaryBlack,
+            fontWeight: FontWeight.bold,
+            fontSize: 24.0,
+          ),
+        ),
+        GestureDetector(
+          onTap: model.clearForm,
+          child: const Text(
+            'Clear Form',
+            style: TextStyle(
+              color: kSecondaryGrey2,
+              fontSize: 16.0,
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -54,6 +70,7 @@ class RegisterView extends ViewModelBuilderWidget<RegisterViewModel> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           TextField(
+            controller: TextEditingController()..text = model.email,
             style: const TextStyle(fontSize: 16.0, height: 1.5),
             decoration: InputDecoration(
               labelText: 'Email',
@@ -65,6 +82,7 @@ class RegisterView extends ViewModelBuilderWidget<RegisterViewModel> {
             onChanged: model.updateEmail,
           ),
           TextField(
+            controller: TextEditingController()..text = model.password,
             style: const TextStyle(fontSize: 16.0, height: 1.5),
             decoration: InputDecoration(
               labelText: 'Password',
@@ -85,6 +103,7 @@ class RegisterView extends ViewModelBuilderWidget<RegisterViewModel> {
             onChanged: model.updatePassword,
           ),
           TextField(
+            controller: TextEditingController()..text = model.nickname,
             style: const TextStyle(fontSize: 16.0, height: 1.5),
             decoration: const InputDecoration(
               labelText: 'Nickname',
@@ -95,6 +114,9 @@ class RegisterView extends ViewModelBuilderWidget<RegisterViewModel> {
             onChanged: model.updateNickname,
           ),
           TextField(
+            controller: TextEditingController()
+              ..text =
+                  model.dateOfBirth != null ? model.dateOfBirth.toString() : '',
             style: const TextStyle(fontSize: 16.0, height: 1.5),
             decoration: const InputDecoration(
               labelText: 'Date of Birth',
@@ -105,6 +127,7 @@ class RegisterView extends ViewModelBuilderWidget<RegisterViewModel> {
             onChanged: (val) => model.updateDateOfBirth(val as DateTime),
           ),
           TextField(
+            controller: TextEditingController()..text = model.gender,
             style: const TextStyle(fontSize: 16.0, height: 1.5),
             decoration: const InputDecoration(
               labelText: 'Gender',
@@ -115,6 +138,7 @@ class RegisterView extends ViewModelBuilderWidget<RegisterViewModel> {
             onChanged: model.updateGender,
           ),
           TextField(
+            controller: TextEditingController()..text = model.address,
             style: const TextStyle(fontSize: 16.0, height: 1.5),
             decoration: const InputDecoration(
               labelText: 'Address',
@@ -125,6 +149,7 @@ class RegisterView extends ViewModelBuilderWidget<RegisterViewModel> {
             onChanged: model.updateAddress,
           ),
           TextField(
+            controller: TextEditingController()..text = model.nationality,
             style: const TextStyle(fontSize: 16.0, height: 1.5),
             decoration: const InputDecoration(
               labelText: 'Nationality',

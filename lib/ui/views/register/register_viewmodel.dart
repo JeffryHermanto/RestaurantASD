@@ -44,6 +44,21 @@ class RegisterViewModel extends BaseViewModel {
   void updateAddress(String value) => _address = value;
   void updateNationality(String value) => _nationality = value;
 
+  void clearForm() {
+    _email = null;
+    _password = null;
+    _nickname = null;
+    _dateOfBirth = null;
+    _gender = null;
+    _address = null;
+    _nationality = null;
+    _emailErrorText = null;
+    _passwordErrorText = null;
+    _isObscured = true;
+
+    notifyListeners();
+  }
+
   void toggleShowPassword() {
     _isObscured = !_isObscured;
     notifyListeners();
