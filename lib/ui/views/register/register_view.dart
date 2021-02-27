@@ -3,14 +3,15 @@ import 'package:stacked/stacked.dart';
 
 import '../../constants.dart';
 import '../../shared_widgets/custom_circular_progress_indicator.dart';
-import 'login_viewmodel.dart';
+import 'register_viewmodel.dart';
 
-class LoginView extends ViewModelBuilderWidget<LoginViewModel> {
+class RegisterView extends ViewModelBuilderWidget<RegisterViewModel> {
   @override
-  LoginViewModel viewModelBuilder(BuildContext context) => LoginViewModel();
+  RegisterViewModel viewModelBuilder(BuildContext context) =>
+      RegisterViewModel();
 
   @override
-  Widget builder(BuildContext context, LoginViewModel model, Widget child) {
+  Widget builder(BuildContext context, RegisterViewModel model, Widget child) {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -25,7 +26,7 @@ class LoginView extends ViewModelBuilderWidget<LoginViewModel> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 _buildHeader(),
-                _buildLoginForm(model),
+                _buildRegisterForm(model),
                 _buildFooterAndRegisterButton(model),
               ],
             ),
@@ -37,7 +38,7 @@ class LoginView extends ViewModelBuilderWidget<LoginViewModel> {
 
   Widget _buildHeader() {
     return const Text(
-      'Login',
+      'Register',
       style: TextStyle(
         color: kSecondaryBlack,
         fontWeight: FontWeight.bold,
@@ -46,9 +47,9 @@ class LoginView extends ViewModelBuilderWidget<LoginViewModel> {
     );
   }
 
-  Widget _buildLoginForm(LoginViewModel model) {
+  Widget _buildRegisterForm(RegisterViewModel model) {
     return Container(
-      margin: const EdgeInsets.only(top: 40.0, bottom: 38.0),
+      margin: const EdgeInsets.only(top: 10.0, bottom: 38.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -63,7 +64,6 @@ class LoginView extends ViewModelBuilderWidget<LoginViewModel> {
             keyboardType: TextInputType.emailAddress,
             onChanged: model.updateEmail,
           ),
-          const SizedBox(height: 24.0),
           TextField(
             style: const TextStyle(fontSize: 16.0, height: 1.5),
             decoration: InputDecoration(
@@ -84,9 +84,64 @@ class LoginView extends ViewModelBuilderWidget<LoginViewModel> {
             obscureText: model.isObscured,
             onChanged: model.updatePassword,
           ),
-          const SizedBox(height: 69.0),
+          TextField(
+            style: const TextStyle(fontSize: 16.0, height: 1.5),
+            decoration: InputDecoration(
+              labelText: 'Nickname',
+              labelStyle: kInputLabelTextStyle,
+              errorText: model.nicknameErrorText,
+            ),
+            cursorColor: kSecondaryGrey1,
+            keyboardType: TextInputType.emailAddress,
+            onChanged: model.updateEmail,
+          ),
+          TextField(
+            style: const TextStyle(fontSize: 16.0, height: 1.5),
+            decoration: InputDecoration(
+              labelText: 'Date of Birth',
+              labelStyle: kInputLabelTextStyle,
+              errorText: model.dateOfBirthErrorText,
+            ),
+            cursorColor: kSecondaryGrey1,
+            keyboardType: TextInputType.emailAddress,
+            onChanged: model.updateEmail,
+          ),
+          TextField(
+            style: const TextStyle(fontSize: 16.0, height: 1.5),
+            decoration: InputDecoration(
+              labelText: 'Gender',
+              labelStyle: kInputLabelTextStyle,
+              errorText: model.genderErrorText,
+            ),
+            cursorColor: kSecondaryGrey1,
+            keyboardType: TextInputType.emailAddress,
+            onChanged: model.updateEmail,
+          ),
+          TextField(
+            style: const TextStyle(fontSize: 16.0, height: 1.5),
+            decoration: InputDecoration(
+              labelText: 'Address',
+              labelStyle: kInputLabelTextStyle,
+              errorText: model.addressErrorText,
+            ),
+            cursorColor: kSecondaryGrey1,
+            keyboardType: TextInputType.emailAddress,
+            onChanged: model.updateEmail,
+          ),
+          TextField(
+            style: const TextStyle(fontSize: 16.0, height: 1.5),
+            decoration: InputDecoration(
+              labelText: 'Nationality',
+              labelStyle: kInputLabelTextStyle,
+              errorText: model.nationalityErrorText,
+            ),
+            cursorColor: kSecondaryGrey1,
+            keyboardType: TextInputType.emailAddress,
+            onChanged: model.updateEmail,
+          ),
+          const SizedBox(height: 36.0),
           FlatButton(
-            onPressed: model.login,
+            onPressed: model.register,
             height: 50.0,
             color: kPrimaryRed,
             shape: RoundedRectangleBorder(
@@ -95,7 +150,7 @@ class LoginView extends ViewModelBuilderWidget<LoginViewModel> {
             child: model.isBusy
                 ? const CustomCircularProgressIndicator()
                 : const Text(
-                    'LOGIN',
+                    'REGISTER',
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -108,21 +163,21 @@ class LoginView extends ViewModelBuilderWidget<LoginViewModel> {
     );
   }
 
-  Widget _buildFooterAndRegisterButton(LoginViewModel model) {
+  Widget _buildFooterAndRegisterButton(RegisterViewModel model) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Text(
-          'Belum punya akun?',
+          'Sudah punya akun?',
           style: TextStyle(color: kSecondaryBlack, fontSize: 16.0),
         ),
         const SizedBox(width: 12.0),
         SizedBox(
           height: 30.0,
           child: OutlineButton(
-            onPressed: model.navigateToRegisterView,
+            onPressed: model.navigateBackToLoginView,
             child: const Text(
-              'REGISTER',
+              'LOGIN',
               style: TextStyle(
                 fontSize: 12.0,
                 fontWeight: FontWeight.bold,

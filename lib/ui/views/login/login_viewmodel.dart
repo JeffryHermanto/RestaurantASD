@@ -2,6 +2,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../../app/app.locator.dart';
+import '../../../app/app.router.dart';
 import '../../../enums/dialog_type.dart';
 
 class LoginViewModel extends BaseViewModel {
@@ -20,7 +21,8 @@ class LoginViewModel extends BaseViewModel {
   String get passwordErrorText => _passwordErrorText;
   bool get isObscured => _isObscured;
 
-  void navigateBackToOnboardingView() => _navigationService.back();
+  void navigateToRegisterView() =>
+      _navigationService.navigateTo(Routes.registerView);
 
   void updateEmail(String value) => _email = value;
   void updatePassword(String value) => _password = value;
@@ -31,7 +33,9 @@ class LoginViewModel extends BaseViewModel {
   }
 
   Future login() async {
-    if (_isEmailAndPasswordNotNullAndNotEmpty()) {}
+    if (_isEmailAndPasswordNotNullAndNotEmpty()) {
+      _navigationService.navigateTo(Routes.homeView);
+    }
   }
 
   bool _isEmailAndPasswordNotNullAndNotEmpty() {

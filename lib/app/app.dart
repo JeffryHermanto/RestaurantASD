@@ -3,10 +3,12 @@ import 'package:stacked_services/stacked_services.dart';
 
 import '../ui/views/home/home_view.dart';
 import '../ui/views/login/login_view.dart';
+import '../ui/views/register/register_view.dart';
 
 @StackedApp(
   routes: [
     MaterialRoute(page: LoginView),
+    MaterialRoute(page: RegisterView),
     MaterialRoute(page: HomeView),
   ],
   dependencies: [

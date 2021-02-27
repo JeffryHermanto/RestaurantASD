@@ -4,7 +4,10 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Restaurant ASD')),
+      appBar: AppBar(
+        title: const Text('Restaurant ASD'),
+        automaticallyImplyLeading: false,
+      ),
     );
   }
 }
