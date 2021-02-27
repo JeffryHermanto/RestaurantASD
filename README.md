@@ -8,6 +8,12 @@ The services based on Flutter which will be used by the restaurant staffs and th
 
 ---
 
+## Screenshots
+
+![Screenshots](documentation/screenshots.png)
+
+---
+
 ## Architecture
 
 I am using [Stacked Architecture](https://www.filledstacks.com/post/flutter-and-provider-architecture-using-stacked) which was an implementation of MVVM.
