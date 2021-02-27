@@ -1,5 +1,6 @@
 import 'dart:developer' as developer;
 
+import 'package:dartz/dartz.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite_migration_service/sqflite_migration_service.dart';
 
@@ -32,11 +33,22 @@ class DatabaseService {
         .toList();
   }
 
-  Future addUser(User user) async {
+  Future<Either<Exception, Unit>> addUser(User newUser) async {
     try {
-      await _database.insert(usersTableName, user.toMap());
-    } catch (e) {
-      developer.log('Could not insert the user: $e');
+      final users = await getUsers();
+
+      final searchedUser =
+          users.where((element) => element.email == newUser.email).toList();
+
+      if (searchedUser.isNotEmpty) {
+        throw Exception('User already exist.');
+      } else {
+        await _database.insert(usersTableName, newUser.toMap());
+        return right(unit);
+      }
+    } on Exception catch (e) {
+      developer.log(e.toString());
+      return left(e);
     }
   }
 }

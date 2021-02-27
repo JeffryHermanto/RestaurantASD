@@ -51,7 +51,7 @@ class RegisterViewModel extends BaseViewModel {
 
   Future register() async {
     if (_isEmailAndPasswordNotNullAndNotEmpty()) {
-      await _databaseService.addUser(User(
+      final response = await _databaseService.addUser(User(
         id: Uuid().v1(),
         email: _email,
         password: _password,
@@ -61,6 +61,11 @@ class RegisterViewModel extends BaseViewModel {
         address: _address,
         nationality: _nationality,
       ));
+
+      response.fold(
+        (exception) => _showRegisterErrorDialog(exception.toString()),
+        (unit) => _showRegisterSuccessDialog(),
+      );
     }
   }
 
@@ -91,7 +96,17 @@ class RegisterViewModel extends BaseViewModel {
     });
   }
 
-  // ignore: unused_element
+  Future _showRegisterSuccessDialog() async {
+    await _dialogService.showCustomDialog(
+      variant: DialogType.base,
+      title: 'Register Success',
+      description: 'You are registered!',
+      mainButtonTitle: 'PLEASE SIGN IN',
+    );
+
+    _navigationService.back();
+  }
+
   Future _showRegisterErrorDialog(String errorMessage) async {
     await _dialogService.showCustomDialog(
       variant: DialogType.error,
