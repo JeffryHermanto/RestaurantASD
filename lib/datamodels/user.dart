@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 class User {
-  int id;
+  String id;
   String email;
   String password;
   String nickname;
@@ -38,7 +38,7 @@ class User {
     if (map == null) return null;
 
     return User(
-      id: map['id'] as int,
+      id: map['id'] as String,
       email: map['email'] as String,
       password: map['password'] as String,
       nickname: map['nickname'] as String,

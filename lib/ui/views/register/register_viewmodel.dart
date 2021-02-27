@@ -1,5 +1,6 @@
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../../app/app.locator.dart';
 import '../../../datamodels/user.dart';
@@ -65,7 +66,7 @@ class RegisterViewModel extends BaseViewModel {
   Future register() async {
     if (_isAllParamsNotNullAndNotEmpty()) {
       await _databaseService.addUser(User(
-        id: 0,
+        id: Uuid().v1(),
         email: _email,
         password: _password,
         nickname: _nickname,
