@@ -86,10 +86,9 @@ class RegisterView extends ViewModelBuilderWidget<RegisterViewModel> {
           ),
           TextField(
             style: const TextStyle(fontSize: 16.0, height: 1.5),
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               labelText: 'Nickname',
               labelStyle: kInputLabelTextStyle,
-              errorText: model.nicknameErrorText,
             ),
             cursorColor: kSecondaryGrey1,
             keyboardType: TextInputType.emailAddress,
@@ -97,10 +96,9 @@ class RegisterView extends ViewModelBuilderWidget<RegisterViewModel> {
           ),
           TextField(
             style: const TextStyle(fontSize: 16.0, height: 1.5),
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               labelText: 'Date of Birth',
               labelStyle: kInputLabelTextStyle,
-              errorText: model.dateOfBirthErrorText,
             ),
             cursorColor: kSecondaryGrey1,
             keyboardType: TextInputType.emailAddress,
@@ -108,10 +106,9 @@ class RegisterView extends ViewModelBuilderWidget<RegisterViewModel> {
           ),
           TextField(
             style: const TextStyle(fontSize: 16.0, height: 1.5),
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               labelText: 'Gender',
               labelStyle: kInputLabelTextStyle,
-              errorText: model.genderErrorText,
             ),
             cursorColor: kSecondaryGrey1,
             keyboardType: TextInputType.emailAddress,
@@ -119,10 +116,9 @@ class RegisterView extends ViewModelBuilderWidget<RegisterViewModel> {
           ),
           TextField(
             style: const TextStyle(fontSize: 16.0, height: 1.5),
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               labelText: 'Address',
               labelStyle: kInputLabelTextStyle,
-              errorText: model.addressErrorText,
             ),
             cursorColor: kSecondaryGrey1,
             keyboardType: TextInputType.emailAddress,
@@ -130,10 +126,9 @@ class RegisterView extends ViewModelBuilderWidget<RegisterViewModel> {
           ),
           TextField(
             style: const TextStyle(fontSize: 16.0, height: 1.5),
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               labelText: 'Nationality',
               labelStyle: kInputLabelTextStyle,
-              errorText: model.nationalityErrorText,
             ),
             cursorColor: kSecondaryGrey1,
             keyboardType: TextInputType.emailAddress,

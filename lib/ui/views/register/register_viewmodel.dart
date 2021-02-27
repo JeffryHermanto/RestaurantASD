@@ -19,15 +19,8 @@ class RegisterViewModel extends BaseViewModel {
   String _gender;
   String _address;
   String _nationality;
-
   String _emailErrorText;
   String _passwordErrorText;
-  String _nicknameErrorText;
-  String _dateOfBirthErrorText;
-  String _genderErrorText;
-  String _addressErrorText;
-  String _nationalityErrorText;
-
   bool _isObscured = true;
 
   String get email => _email;
@@ -37,15 +30,8 @@ class RegisterViewModel extends BaseViewModel {
   String get gender => _gender;
   String get address => _address;
   String get nationality => _nationality;
-
   String get emailErrorText => _emailErrorText;
   String get passwordErrorText => _passwordErrorText;
-  String get nicknameErrorText => _nicknameErrorText;
-  String get dateOfBirthErrorText => _dateOfBirthErrorText;
-  String get genderErrorText => _genderErrorText;
-  String get addressErrorText => _addressErrorText;
-  String get nationalityErrorText => _nationalityErrorText;
-
   bool get isObscured => _isObscured;
 
   void navigateBackToLoginView() => _navigationService.back();
@@ -64,7 +50,7 @@ class RegisterViewModel extends BaseViewModel {
   }
 
   Future register() async {
-    if (_isAllParamsNotNullAndNotEmpty()) {
+    if (_isEmailAndPasswordNotNullAndNotEmpty()) {
       await _databaseService.addUser(User(
         id: Uuid().v1(),
         email: _email,
@@ -78,22 +64,13 @@ class RegisterViewModel extends BaseViewModel {
     }
   }
 
-  bool _isAllParamsNotNullAndNotEmpty() {
+  bool _isEmailAndPasswordNotNullAndNotEmpty() {
     _setErrorTextIfNullOrEmpty();
 
     return _email != null &&
         _email.isNotEmpty &&
         _password != null &&
-        _password.isNotEmpty &&
-        _nickname != null &&
-        _nickname.isNotEmpty &&
-        _dateOfBirth != null &&
-        _gender != null &&
-        _gender.isNotEmpty &&
-        _address != null &&
-        _address.isNotEmpty &&
-        _nationality != null &&
-        _nationality.isNotEmpty;
+        _password.isNotEmpty;
   }
 
   void _setErrorTextIfNullOrEmpty() {
@@ -103,32 +80,12 @@ class RegisterViewModel extends BaseViewModel {
     if (_password == null || _password.isEmpty) {
       _passwordErrorText = 'Password cannot be blank';
     }
-    if (_nickname == null || _nickname.isEmpty) {
-      _nicknameErrorText = 'Nickname cannot be blank';
-    }
-    if (_dateOfBirth == null) {
-      _dateOfBirthErrorText = 'Date of birth cannot be blank';
-    }
-    if (_gender == null || _gender.isEmpty) {
-      _genderErrorText = 'Gender cannot be blank';
-    }
-    if (_address == null || _address.isEmpty) {
-      _addressErrorText = 'Address cannot be blank';
-    }
-    if (_nationality == null || _nationality.isEmpty) {
-      _nationalityErrorText = 'Nationality cannot be blank';
-    }
 
     notifyListeners();
 
     Future.delayed(const Duration(seconds: 2), () {
       _emailErrorText = null;
       _passwordErrorText = null;
-      _nicknameErrorText = null;
-      _dateOfBirthErrorText = null;
-      _genderErrorText = null;
-      _addressErrorText = null;
-      _nationalityErrorText = null;
 
       notifyListeners();
     });

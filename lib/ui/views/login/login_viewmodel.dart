@@ -4,10 +4,12 @@ import 'package:stacked_services/stacked_services.dart';
 import '../../../app/app.locator.dart';
 import '../../../app/app.router.dart';
 import '../../../enums/dialog_type.dart';
+import '../../../services/database_service.dart';
 
 class LoginViewModel extends BaseViewModel {
   final NavigationService _navigationService = locator<NavigationService>();
   final DialogService _dialogService = locator<DialogService>();
+  final DatabaseService _databaseService = locator<DatabaseService>();
 
   String _email;
   String _password;
@@ -34,7 +36,22 @@ class LoginViewModel extends BaseViewModel {
 
   Future login() async {
     if (_isEmailAndPasswordNotNullAndNotEmpty()) {
-      _navigationService.navigateTo(Routes.homeView);
+      try {
+        final users = await _databaseService.getUsers();
+        final user = users.firstWhere((element) => element.email == _email);
+
+        if (user != null) {
+          if (user.password == _password) {
+            _navigationService.navigateTo(Routes.homeView);
+          } else {
+            _showLoginErrorDialog('Password is wrong.');
+          }
+        } else {
+          _showLoginErrorDialog('User not found.');
+        }
+      } catch (e) {
+        _showLoginErrorDialog(e.toString());
+      }
     }
   }
 
@@ -65,11 +82,10 @@ class LoginViewModel extends BaseViewModel {
     });
   }
 
-  // ignore: unused_element
   Future _showLoginErrorDialog(String errorMessage) async {
     await _dialogService.showCustomDialog(
       variant: DialogType.error,
-      title: 'Log In Failed',
+      title: 'Login Failed',
       description: errorMessage,
       mainButtonTitle: 'TRY AGAIN',
     );

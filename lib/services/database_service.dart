@@ -27,7 +27,9 @@ class DatabaseService {
 
   Future<List<User>> getUsers() async {
     final List<Map> userResults = await _database.query(usersTableName);
-    return userResults.map((user) => User.fromJson(user as String)).toList();
+    return userResults
+        .map((user) => User.fromMap(user as Map<String, dynamic>))
+        .toList();
   }
 
   Future addUser(User user) async {
