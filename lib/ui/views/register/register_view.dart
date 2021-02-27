@@ -93,7 +93,7 @@ class RegisterView extends ViewModelBuilderWidget<RegisterViewModel> {
             ),
             cursorColor: kSecondaryGrey1,
             keyboardType: TextInputType.emailAddress,
-            onChanged: model.updateEmail,
+            onChanged: model.updateNickname,
           ),
           TextField(
             style: const TextStyle(fontSize: 16.0, height: 1.5),
@@ -104,7 +104,7 @@ class RegisterView extends ViewModelBuilderWidget<RegisterViewModel> {
             ),
             cursorColor: kSecondaryGrey1,
             keyboardType: TextInputType.emailAddress,
-            onChanged: model.updateEmail,
+            onChanged: (val) => model.updateDateOfBirth(val as DateTime),
           ),
           TextField(
             style: const TextStyle(fontSize: 16.0, height: 1.5),
@@ -115,7 +115,7 @@ class RegisterView extends ViewModelBuilderWidget<RegisterViewModel> {
             ),
             cursorColor: kSecondaryGrey1,
             keyboardType: TextInputType.emailAddress,
-            onChanged: model.updateEmail,
+            onChanged: model.updateGender,
           ),
           TextField(
             style: const TextStyle(fontSize: 16.0, height: 1.5),
@@ -126,7 +126,7 @@ class RegisterView extends ViewModelBuilderWidget<RegisterViewModel> {
             ),
             cursorColor: kSecondaryGrey1,
             keyboardType: TextInputType.emailAddress,
-            onChanged: model.updateEmail,
+            onChanged: model.updateAddress,
           ),
           TextField(
             style: const TextStyle(fontSize: 16.0, height: 1.5),
@@ -137,7 +137,7 @@ class RegisterView extends ViewModelBuilderWidget<RegisterViewModel> {
             ),
             cursorColor: kSecondaryGrey1,
             keyboardType: TextInputType.emailAddress,
-            onChanged: model.updateEmail,
+            onChanged: model.updateNationality,
           ),
           const SizedBox(height: 36.0),
           FlatButton(

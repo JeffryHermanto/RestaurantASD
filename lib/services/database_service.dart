@@ -13,7 +13,6 @@ class DatabaseService {
   Future initialise() async {
     _database = await openDatabase(DB_NAME, version: 1);
 
-    // Apply migration on every start
     await _migrationService.runMigration(
       _database,
       migrationFiles: [

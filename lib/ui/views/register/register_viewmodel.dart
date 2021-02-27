@@ -11,7 +11,7 @@ class RegisterViewModel extends BaseViewModel {
   String _email;
   String _password;
   String _nickname;
-  String _dateOfBirth;
+  DateTime _dateOfBirth;
   String _gender;
   String _address;
   String _nationality;
@@ -29,7 +29,7 @@ class RegisterViewModel extends BaseViewModel {
   String get email => _email;
   String get password => _password;
   String get nickname => _nickname;
-  String get dateOfBirth => _dateOfBirth;
+  DateTime get dateOfBirth => _dateOfBirth;
   String get gender => _gender;
   String get address => _address;
   String get nationality => _nationality;
@@ -49,7 +49,7 @@ class RegisterViewModel extends BaseViewModel {
   void updateEmail(String value) => _email = value;
   void updatePassword(String value) => _password = value;
   void updateNickname(String value) => _nickname = value;
-  void updateDateOfBirth(String value) => _dateOfBirth = value;
+  void updateDateOfBirth(DateTime value) => _dateOfBirth = value;
   void updateGender(String value) => _gender = value;
   void updateAddress(String value) => _address = value;
   void updateNationality(String value) => _nationality = value;
@@ -73,7 +73,6 @@ class RegisterViewModel extends BaseViewModel {
         _nickname != null &&
         _nickname.isNotEmpty &&
         _dateOfBirth != null &&
-        _dateOfBirth.isNotEmpty &&
         _gender != null &&
         _gender.isNotEmpty &&
         _address != null &&
@@ -92,7 +91,7 @@ class RegisterViewModel extends BaseViewModel {
     if (_nickname == null || _nickname.isEmpty) {
       _nicknameErrorText = 'Nickname cannot be blank';
     }
-    if (_dateOfBirth == null || _dateOfBirth.isEmpty) {
+    if (_dateOfBirth == null) {
       _dateOfBirthErrorText = 'Date of birth cannot be blank';
     }
     if (_gender == null || _gender.isEmpty) {
