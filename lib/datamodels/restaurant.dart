@@ -3,6 +3,7 @@ import 'dart:convert';
 class Restaurant {
   int id;
   String name;
+  String image;
   String address;
   String description;
   String email;
@@ -13,6 +14,7 @@ class Restaurant {
   Restaurant({
     this.id,
     this.name,
+    this.image,
     this.address,
     this.description,
     this.email,
@@ -25,6 +27,7 @@ class Restaurant {
     return {
       'id': id,
       'name': name,
+      'image': image,
       'address': address,
       'description': description,
       'email': email,
@@ -40,6 +43,7 @@ class Restaurant {
     return Restaurant(
       id: map['id'] as int,
       name: map['name'] as String,
+      image: map['image'] as String,
       address: map['address'] as String,
       description: map['description'] as String,
       email: map['email'] as String,

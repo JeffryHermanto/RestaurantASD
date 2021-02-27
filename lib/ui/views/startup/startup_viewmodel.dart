@@ -9,11 +9,8 @@ class StartupViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _databaseService = locator<DatabaseService>();
 
-  final isLoggedIn = false; // TODO: Implement logged in check
-
   Future initialize() async {
     await _databaseService.initialise();
-    await _navigationService
-        .navigateTo(isLoggedIn ? Routes.homeView : Routes.loginView);
+    await _navigationService.navigateTo(Routes.loginView);
   }
 }
