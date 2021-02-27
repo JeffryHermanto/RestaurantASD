@@ -16,8 +16,6 @@ Future main() async {
 }
 
 class RestaurantASDApp extends StatelessWidget {
-  final bool isLoggedIn = false;
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -28,7 +26,7 @@ class RestaurantASDApp extends StatelessWidget {
       ),
       navigatorKey: StackedService.navigatorKey,
       onGenerateRoute: StackedRouter().onGenerateRoute,
-      initialRoute: isLoggedIn ? Routes.homeView : Routes.loginView,
+      initialRoute: Routes.startupView,
       debugShowCheckedModeBanner: false,
     );
   }

@@ -17,6 +17,7 @@ class LoginView extends ViewModelBuilderWidget<LoginViewModel> {
         appBar: AppBar(
           title: const Text('Restaurant ASD'),
           centerTitle: true,
+          automaticallyImplyLeading: false,
         ),
         body: SingleChildScrollView(
           child: Padding(
